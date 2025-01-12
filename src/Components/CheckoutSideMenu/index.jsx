@@ -56,7 +56,7 @@ const CheckoutSideMenu = () => {
             key={product.id}
             id={product.id}
             title={product.title}
-            imageUrl={product.images[0]}
+            imageUrl={product.image}
             price={product.price}
             handleDelete={handleDelete}
           />
@@ -65,7 +65,7 @@ const CheckoutSideMenu = () => {
       <div className="p-6 border-t-2">
         <p className="flex justify-between items-center">
           <span className="font-light">Total:</span>
-          <span className="font-medium text-xl">{finalPrice}€</span>
+          <span className="font-medium text-xl">{finalPrice.toFixed(2)}€</span>
         </p>
         <Link to={`/my-orders/last`}>
           {isDisabled ? (

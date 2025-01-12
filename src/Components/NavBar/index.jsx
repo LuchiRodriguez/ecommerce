@@ -2,9 +2,11 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { ShoppingBagIcon } from "@heroicons/react/24/solid";
 import { ShoppingCartContext } from "../../Context/ShoppingCartContext";
+import { UserContext } from "../../Context/UserContext";
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
+  const userContext = useContext(UserContext);
   const activeStyle = "underline underline-offset-4";
 
   return (
@@ -25,7 +27,7 @@ const Navbar = () => {
         <li>
           <NavLink
             to="/clothes"
-            onClick={() => context.setCategory("clothes")}
+            onClick={() => context.setCategory("clothing")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             Clothes
@@ -42,29 +44,11 @@ const Navbar = () => {
         </li>
         <li>
           <NavLink
-            to="/furnitures"
-            onClick={() => context.setCategory("furniture")}
+            to="/jewelery"
+            onClick={() => context.setCategory("jewelery")}
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
-            Furnitures
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/toys"
-            onClick={() => context.setCategory("toys")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Toys
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/others"
-            onClick={() => context.setCategory("others")}
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Others
+            Jewelery
           </NavLink>
         </li>
       </ul>
@@ -75,7 +59,7 @@ const Navbar = () => {
         onChange={(e) => context.setTitle(e.target.value)}
       />
       <ul className="flex items-center gap-3">
-        <li className="text-black/60">lulirodri98@gmail.com</li>
+        <li className="text-black/60">{userContext.user?.username}</li>
         <li>
           <NavLink
             to="/my-orders"
@@ -90,14 +74,6 @@ const Navbar = () => {
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
           >
             My Account
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/sign-in"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            Sign In
           </NavLink>
         </li>
         <li className="flex items-center">

@@ -16,6 +16,14 @@ export const ShoppingCartProvider = ({ children }) => {
   const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true);
   const closeCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(false);
 
+  useEffect(() => {
+    if (isCheckoutSideMenuOpen) {
+      closeProductDetail();
+    } else if (isProductDetailOpen) {
+      closeCheckoutSideMenu();
+    }
+  }, [isCheckoutSideMenuOpen, isProductDetailOpen]);
+
   //Product Detail - Show product
   const [productToShow, setProductToShow] = useState({});
 
@@ -36,7 +44,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [category, setCategory] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.escuelajs.co/api/v1/products")
+    fetch("https://fakestoreapi.com/products")
       .then((response) => response.json())
       .then((data) => setProducts(data));
   }, []);
@@ -49,7 +57,7 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const filteredProductsByCategory = (products, category) => {
     return products?.filter((product) =>
-      product.category.name.toLowerCase().includes(category.toLowerCase())
+      product.category.toLowerCase().includes(category.toLowerCase())
     );
   };
 

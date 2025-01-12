@@ -23,7 +23,7 @@ const MyOrder = () => {
             key={product.id}
             id={product.id}
             title={product.title}
-            imageUrl={product.images[0]}
+            imageUrl={product.image}
             price={product.price}
           />
         ))}
